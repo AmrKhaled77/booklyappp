@@ -43,7 +43,9 @@ class Detils extends StatelessWidget {
           ),),
 
           const SizedBox(height: 10,),
-          const Rating(mainAxisAlignment: MainAxisAlignment.center,),
+           Rating(mainAxisAlignment: MainAxisAlignment.center,
+          bookModel:bookModel ,
+          ),
 
 
 

@@ -1,6 +1,7 @@
 
 import 'package:booklyappp/core/utills/appRouter.dart';
 import 'package:booklyappp/features/home/date/models/BookModel/book_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -26,13 +27,11 @@ Widget build(BuildContext context) {
           height: MediaQuery.of(context).size.height*0.15,
           child: AspectRatio(
             aspectRatio: 5/7,
-            child: Container(
-
-              decoration:  BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(bookModel!.volumeInfo!.imageLinks!.smallThumbnail!))
-
-              ),
-
+            child: CachedNetworkImage(
+              fit: BoxFit.fill,
+              imageUrl:bookModel!.volumeInfo!.imageLinks!.thumbnail,
+              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
         ),
@@ -58,11 +57,7 @@ Widget build(BuildContext context) {
                   ,),
               ),
                const SizedBox(height: 8.0,),
-               const Text(style: TextStyle(
-                    color: Colors.white24
-                ),
-                "test",
-              ),
+
               const SizedBox(height: 10,),
 
               Container(
@@ -70,9 +65,9 @@ Widget build(BuildContext context) {
                 width: double.infinity,
                 child:  Row(
                   children: [
-                    const Text("19.99\$",style: TextStyle(fontWeight: FontWeight.bold),),
+                     const Text('Free',style: TextStyle(fontWeight: FontWeight.bold),),
                     SizedBox(width: MediaQuery.of(context).size.width*0.2 ,),
-                    const Rating(),
+                     Rating(bookModel:bookModel! ,),
 
 
                   ],
@@ -93,26 +88,33 @@ Widget build(BuildContext context) {
 class Rating extends StatelessWidget {
   const Rating({super.key,
      this.mainAxisAlignment=MainAxisAlignment.start,
+    required this.bookModel
 
 
 
   }) ;
+  final BookModel bookModel;
 final MainAxisAlignment mainAxisAlignment;
   @override
   Widget build(BuildContext context) {
     return  Row(
       mainAxisAlignment:mainAxisAlignment ,
 
-      children: const [
-         Icon(Icons.star
+      children:  [
+         const Icon(Icons.star
         ,color: Color(0xffFFDD4F),
         ),
-        Text('4.8',style: TextStyle(
+        Text(bookModel.volumeInfo.averageRating != null?  (bookModel.volumeInfo.averageRating).toString() : "0",
+
+
+          style: const TextStyle(
           color: Colors.white
         ),),
-        SizedBox(width: 3,),
+        const SizedBox(width: 3,),
 
-        Text('(243)',style: TextStyle(
+        Text(
+          bookModel.volumeInfo.ratingsCount != null?  "(${(bookModel.volumeInfo.averageRating).toString()})" : "(0)"
+    ,style: const TextStyle(
           color: Colors.white24
         ),),
 

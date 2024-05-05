@@ -38,7 +38,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
 
 
    Future.delayed(Duration(seconds: 3),(){
-     GoRouter.of(context).push(appRouter.KhomePath);
+     GoRouter.of(context).pushReplacement(appRouter.KhomePath);
    });
 
   }
@@ -57,7 +57,13 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
             return  SlideTransition(
 
                 position: animation,
-                child: const Text('read free books',style: TextStyle(color: Colors.white),textAlign: TextAlign.center,)
+                child: const Text('read free books',style: TextStyle(color: Colors.white,
+                fontStyle:FontStyle.italic,
+                  fontWeight: FontWeight.bold
+
+                ),textAlign: TextAlign.center,
+
+                )
             );
           },
 

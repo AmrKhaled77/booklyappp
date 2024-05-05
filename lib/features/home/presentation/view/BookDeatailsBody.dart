@@ -28,7 +28,7 @@ class BookDetailsBody extends StatelessWidget {
           ),
          Padding(
            padding: const EdgeInsets.all(28.0),
-           child: CustomButton(),
+           child: CustomButton(bookModel: bookModel,),
          ),
          const SizedBox(height: 5,),
          const Padding(

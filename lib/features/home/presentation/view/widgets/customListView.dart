@@ -1,4 +1,6 @@
 import 'package:booklyappp/core/utills/appRouter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../date/models/BookModel/book_model.dart';
@@ -21,29 +23,31 @@ class CustomListViewItem extends StatelessWidget {
       },
       child: SizedBox(
 
-        child: AspectRatio(
-          aspectRatio: 5/7,
-          child: Container(
-
-
-
-            decoration:  BoxDecoration(
-
-                borderRadius: BorderRadius.circular(15),
-
-
-                image:  DecorationImage(image: NetworkImage(bookModel.volumeInfo!.imageLinks!.thumbnail),
-                    fit: BoxFit.fill
-                )
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: AspectRatio(
+            aspectRatio: 5/7,
+            child:CachedNetworkImage(
+              fit: BoxFit.fill,
+              imageUrl:bookModel.volumeInfo!.imageLinks!.thumbnail,
+              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
 
+            //Container(
 
 
 
-          ),
+
+
+
+
+
+            ),
         ),
-      ),
-    );
+        ),
+      );
+
   }
 }
 
@@ -71,6 +75,9 @@ class CustomListViewList extends StatelessWidget {
       },itemCount: Books.length,
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
+        physics:const BouncingScrollPhysics(),
+
+
 
 
       ),
