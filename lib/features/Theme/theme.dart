@@ -5,8 +5,7 @@ ThemeData lightMode=ThemeData(
 
 
       colorScheme: const ColorScheme.light(
-        background: Color.fromRGBO(245, 181, 216, 10)
-
+        background:Color.fromRGBO(209, 209, 209, 1.0)
 
 
       )

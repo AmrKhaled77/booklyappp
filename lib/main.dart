@@ -5,6 +5,8 @@ import 'package:booklyappp/core/utills/appRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import 'package:go_router/go_router.dart';
 
@@ -28,6 +30,20 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, ThemeState state) {
 
           return  MaterialApp.router(
+
+              localizationsDelegates:const   [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: BlocProvider.of<ThemeCubit>(context).IsEnglish?const Locale('en'):const Locale('ar'),
+              supportedLocales:  const[
+                Locale('en'), // English
+                Locale('ar'), // Spanish
+              ],
+
+
 
 
 

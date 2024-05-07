@@ -2,6 +2,10 @@
 
 
 import 'package:booklyappp/features/home/presentation/view/widgets/appBAr.dart';
+import 'package:booklyappp/features/home/presentation/view/widgets/carouselList.dart';
+import 'package:booklyappp/features/home/presentation/view/widgets/skelton.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,14 +34,14 @@ class HomeBody extends StatelessWidget {
                 BlocBuilder<FeatuerdBooksCubit, FeatuerdBooksState>(
                   builder: (context, state) {
                     if(state is FeatuerdBookssucsess){
-                      return  CustomListViewList(Books: state.books,);
+                      return carouselList(books: state.books,);
                     }
                     else if(state is FeatuerdBooksfailure){
                       return Text(state.errorMassge);
 
 
                     }else{
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(child:  Skeleton(height: 300,width: 210,));
                     }
                   },
                 ),
@@ -70,8 +74,17 @@ class HomeBody extends StatelessWidget {
                   return Text(state.errorMassge);
 
                 }else{
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return  Center(
+                    child:ListView.builder(itemBuilder: (context ,index){
+                      return const  Padding(
+                        padding:  EdgeInsets.all(8.0),
+                        child:  NewsCardSkelton(),
+                      );
+
+
+                    }
+                    ,itemCount: 7,
+                    )
                   );
                 }
 

@@ -39,10 +39,10 @@ class drawer extends StatelessWidget {
 
           ),
           ListTile(
-            title:   BlocProvider.of<ThemeCubit>(context).IsEnglish?Text("AR"):Text("En"),
+            title:   BlocProvider.of<ThemeCubit>(context).IsEnglish?Text("EN"):Text("AR"),
             onTap: () {
               BlocProvider.of<ThemeCubit>(context).Changelang();
-              // ...
+
             },
           ),
         ],

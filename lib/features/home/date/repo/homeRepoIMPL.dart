@@ -14,7 +14,7 @@ class HomeRepoImpl  implements HomeRepo{
   Future<Either<Failure, List<BookModel>>> FetchAllBooks() async {
 
    try {
-     var response =await apiServices.get(endPoints: '/volumes?q=programing');
+     var response =await apiServices.get(endPoints: '/volumes?q= flutter');
      List<BookModel> books=[];
 
      for (var book in response.data['items'] ){

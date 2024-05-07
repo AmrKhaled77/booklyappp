@@ -2,6 +2,7 @@
 import 'package:booklyappp/features/home/presentation/view/widgets/BookDeatails.dart';
 import 'package:booklyappp/features/home/presentation/view/widgets/boxAction.dart';
 import 'package:booklyappp/features/home/presentation/view/widgets/customListView.dart';
+import 'package:booklyappp/features/home/presentation/view/widgets/skelton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,7 +57,13 @@ class BookDetailsBody extends StatelessWidget {
                        return CustomListViewList(Books: state.books);
     } else if(state is SimillerBooksfailure){
                        return Center(child: Text(state.errorMassge),);
-    }else{return const Center(child:  CircularProgressIndicator(),);}
+    }else
+
+    {return Center(
+      child: CircularProgressIndicator(),
+    );
+
+                     }
     },
 
              )),)

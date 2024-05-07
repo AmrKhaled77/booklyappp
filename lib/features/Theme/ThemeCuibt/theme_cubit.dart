@@ -16,6 +16,8 @@ class ThemeCubit extends Cubit<ThemeState> {
     Isdark=val;
     emit(ChangethemeState());
   }
+
+
   void Changelang(){
 
     IsEnglish=!IsEnglish;

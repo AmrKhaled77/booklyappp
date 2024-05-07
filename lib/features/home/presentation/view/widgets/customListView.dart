@@ -26,12 +26,12 @@ class CustomListViewItem extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: AspectRatio(
-            aspectRatio: 5/7,
+            aspectRatio: 7/10,
             child:CachedNetworkImage(
               fit: BoxFit.fill,
               imageUrl:bookModel.volumeInfo!.imageLinks!.thumbnail,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+              placeholder: (context, url) =>const  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
 
             //Container(
@@ -62,8 +62,9 @@ class CustomListViewList extends StatelessWidget {
   }) ;
 
 
+  @override
   Widget build(BuildContext context) {
-    return  Container(
+    return  SizedBox(
       height: MediaQuery.of(context).size.height*0.25 ,
       child: ListView.builder(itemBuilder:
           (context ,index){

@@ -1,6 +1,7 @@
 
 import 'package:booklyappp/core/utills/appRouter.dart';
 import 'package:booklyappp/features/home/date/models/BookModel/book_model.dart';
+import 'package:booklyappp/features/home/presentation/view/widgets/skelton.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,7 +31,7 @@ Widget build(BuildContext context) {
             child: CachedNetworkImage(
               fit: BoxFit.fill,
               imageUrl:bookModel!.volumeInfo!.imageLinks!.thumbnail,
-              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+              placeholder: (context, url) => const Skeleton(),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
